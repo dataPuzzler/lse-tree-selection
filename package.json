@@ -1,0 +1,18 @@
+{
+  "name": "lse_tree_select",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite serve",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "vite": "^5.3.1",
+    "vitest": "^2.0.4"
+  }
+}
