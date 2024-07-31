@@ -1,7 +1,5 @@
 class ReactiveState{
   constructor(initialState){
-    this._proxyToTagetMap = new WeakMap();
-
     this.listeners = new Map();
     this._state = this._createProxy(initialState)
   }
@@ -19,17 +17,16 @@ class ReactiveState{
     };
 
     const proxy = new Proxy(target, handler);
-    this._proxyToTagetMap.set(proxy, target);
-
     return proxy;
-}
-setState(prop, value){
-  this._state[prop] = value;
-}
+  }
+  
+  setState(prop, value){
+    this._state[prop] = value;
+  }
 
-getState(){
-  return this._proxyToTagetMap.get(this._state)
-}
+  getState(){
+    return Object.assign({}, this._state);
+  }
 
   addListener(property, callback){
     if(!this.listeners.has(property)){
@@ -65,29 +62,6 @@ class TreeSelectionOption{
     this.children = children
   }
 
-}
-
-
-class BaseTreeSelectElement extends HTMLElement{
-  constructor(){ 
-    super()
-    this.attachShadow({ mode: 'open'});
-  }
-
-  /**
-   * @returns{boolean}
-   */
-  isTopLevelComponent(){
-    throw new Error("To be implemented in Subclass")
-  }
-
-}
-
-
-class TopLevelTreeSelectElement extends BaseTreeSelectElement{
-  isTopLevelComponent(){
-    return True
-  }
 }
 
 
@@ -162,7 +136,6 @@ class TreeSelect extends HTMLElement{
     return template
   }
 
-
   connectedCallback(){
     console.log("Tree Select Connect Callback called");
     console.log(this.getAttribute("data"));
@@ -179,6 +152,11 @@ class TreeSelect extends HTMLElement{
 
     
     
+  }
+
+  updateData(data){
+    this.reactive = new ReactiveState(data)
+    this.render();
   }
 
   render(){
@@ -241,7 +219,65 @@ const data = {
   }
 ]};
 
+
+const data_new = {
+  name:"Muscle-Units", checked: true, children: [
+  {
+    name: "Upper Body",
+    checked: false,
+    children: [
+      {
+        name: "Pectoralis Major",
+        checked: false,
+        children: []
+      },
+      {
+        name: "Latissimus Dorsi",
+        checked: true,
+        children: []
+      }
+    ]
+  },
+  {
+    name: "Core",
+    checked: false,
+    children: [
+      {
+        name: "Erector Spinae",
+        checked: false,
+        children: []
+      },
+      {
+        name: "Rectus Abdominus",
+        checked: false,
+        children: []
+      }
+    ]
+  },  
+  {
+    name: "Lower Body",
+    checked: true,
+    children: [
+      {
+        name: "Rectus Femoris",
+        checked: false,
+        children: []
+      },
+      {
+        name: "Gastrocnemius",
+        checked: false,
+        children: []
+      }
+    ]
+  }
+]};
+
 const treeSelect = document.createElement("lse-tree-select");
 treeSelect.setAttribute("data", JSON.stringify(data));
 document.querySelector('#app').appendChild(treeSelect);
+
+setTimeout(
+
+  () => treeSelect.updateData(data_new), 4000
+)
 
