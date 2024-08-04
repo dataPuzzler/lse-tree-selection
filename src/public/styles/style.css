@@ -63,6 +63,24 @@ h1 {
   color: #888;
 }
 
+
+
+
+
+.spinner {
+  border: 12px solid #f3f3f3; /* Light grey */
+  border-top: 12px solid darkred; /* Blue */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -93,4 +111,14 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+
+lse-tree-selection-node {
+  color: red;
+  font-size: bold;
+  margin-left: 70px;
+  display: block;
+
 }
