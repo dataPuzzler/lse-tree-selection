@@ -31,11 +31,11 @@ class TreeSelectionChangeEvent extends Event{
 
 
 
-class TreeSelectionContainer extends HTMLElement{
+class TreeSelection extends HTMLElement{
   constructor(){
     super()
   }
-  
+
   connectedCallback(){
     console.log(`On Connected called in ${this.constructor.name}`)
     this.initErrors = ""
@@ -158,7 +158,7 @@ class TreeSelectionContainer extends HTMLElement{
   }
 }
 
-customElements.define('lse-tree-selection-container', TreeSelectionContainer)
+customElements.define('lse-tree-selection', TreeSelection)
 
 
 class TreeSelectionNode extends HTMLElement{
@@ -329,138 +329,6 @@ customElements.define('lse-tree-selection-node',TreeSelectionNode);
 
 
 
-
-
-
-
-
-class TreeSelect extends HTMLElement{
- 
-
-  constructor(){ 
-    super()
-    this.attachShadow({ mode: 'open'});
-    
-
-  }
-
-  /**
-   * 
-   * @returns 
-   */
-  getChildren(){
-    return this.shadowRoot.querySelectorAll("lse-tree-select");
-  }
-
-  /**
-   * 
-   * @returns {boolean}
-   */
-
-  hasChildren(){
-    return this.reactive.getState().children.length > 0
-  }
-  /**
-   * 
-   * @param {boolean} v
-   */
-  setChecked(v){
-    this.reactive.setState("checked", v);
-    if(this.hasChildren()){
-      this.getChildren().forEach(
-        child => child.setChecked(v)
-      );
-    }
-  }
-
-  /**
-   * @returns{boolean}
-   */
-  getChecked(){
-    return this.reactive.getState().checked
-  }
-
-  toggleChecked(){
-    this.setChecked(!this.getChecked());
-  }
-
-
-  handleClick(e){
-    
-    if(e.target.id && e.target.id == this.reactive.getState().name){
-      this.toggleChecked();        
-    }
-  }
-
-  getTemplate(){
-    let template = document.createElement("template");
-    template.innerHTML = `
-    <style>
-      :host  .selection-label {
-        color: red;
-      }
-      :host .selection-node {
-        margin-left: 80px;
-      }
-    
-    </style> 
-    <div class="selection-node">
-      <input type="checkbox" id="${this.reactive.getState().name}" ${this.reactive.getState().checked ? "checked" : ""} />
-      <label class="selection-label">${this.reactive.getState().name}</label> </br>
-      <span>Is Checked ${this.reactive.getState().checked}</span>
-    </div>
-    `
-    return template
-  }
-
-  connectedCallback(){
-    console.log("Tree Select Connect Callback called");
-    console.log(this.getAttribute("data"));
-    const data = JSON.parse(this.getAttribute('data'));
-    this.reactive = new ReactiveState(new TreeSelectionOption(data));
-
-    // Listen to Event Changes
-    this.reactive.addListener("checked", this.render.bind(this));
-
-    // Listen to UI Events
-    this.shadowRoot.addEventListener("click", e => this.handleClick(e) )
-
-    this.render();
-
-    
-    
-  }
-
-  updateData(data){
-    this.reactive = new ReactiveState(data)
-    this.render();
-  }
-
-  render(){
-    this.shadowRoot.innerHTML = "";
-    const shadowClone = this.getTemplate().content.cloneNode(true);
-    this.shadowRoot.appendChild(shadowClone);
-    this.renderChildren(this.shadowRoot.querySelector(".selection-node"));
-  }
-
-  renderChildren(container){
-    if(this.reactive.getState().children.length > 0){
-      this.reactive.getState().children.forEach(
-        child => {
-          const component = document.createElement("lse-tree-select");
-          component.setAttribute("data", JSON.stringify(child))
-          container.appendChild(component);
-        }
-      )
-    }
-  }
-}
-
-
-
-
-customElements.define('lse-tree-select', TreeSelect);
-
 const data = {
   id: 30,
   label:"Muscle-Units", 
@@ -566,7 +434,7 @@ const data2 = {
 }
 
 
-let region_tree_selection = document.createElement("lse-tree-selection-container")
+let region_tree_selection = document.createElement("lse-tree-selection")
 region_tree_selection.setAttribute("init-dimension", "Region-Selection")
 region_tree_selection.setAttribute("init-data", JSON.stringify(data2))
 app.appendChild(region_tree_selection)

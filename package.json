@@ -1,5 +1,5 @@
 {
-  "name": "lse_tree_select",
+  "name": "lse-tree-selection",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,8 @@
     "preview": "serve -s test-dist -l 5000",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test": "start-server-and-test preview http://localhost:5000 cy:run"
+    "test": "start-server-and-test preview http://localhost:5000 cy:run",
+    "test:open": "start-server-and-test preview http://localhost:5000 cy:open"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

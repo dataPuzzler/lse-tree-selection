@@ -3,7 +3,6 @@ import { defineConfig } from 'cypress';
 export default defineConfig({
   e2e: {
     baseUrl: 'http://localhost:5000', // Change this to your Vite server's port
-    supportFile: false,
     setupNodeEvents(on, config) {
       // implement node event listeners here if needed
     },
