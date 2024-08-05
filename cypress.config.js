@@ -1,7 +1,7 @@
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
-  video: true,
+  video: false,
   e2e: {
     baseUrl: 'http://localhost:5000', // Change this to your Vite server's port
     setupNodeEvents(on, config) {

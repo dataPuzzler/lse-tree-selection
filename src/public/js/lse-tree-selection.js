@@ -46,6 +46,8 @@ class TreeSelection extends HTMLElement{
     this.initDimension = this.getInitDimension()
     if(this.isInitDimensionValid() ){
       this.addEventListener("lse-tree-selection-changed", this.handleChangedSelection)
+      this.setAttribute("id", this.initDimension)
+      this.setAttribute("init-dimension", "done")
     }
 
     if(this.isClientSideRenderingEnabled()){
