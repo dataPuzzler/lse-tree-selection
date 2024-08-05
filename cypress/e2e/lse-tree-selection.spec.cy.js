@@ -7,13 +7,13 @@ afterEach(() => {
 })
 
 
-/*
+
 describe('Lse-Tree-Selection', () => {
     it('Selection Cockpit is visible', () => {
       cy.get('lse-tree-selection').should('exist')
     });
 });
-*/
+
 
 describe('Node Selection View-Behaviour', () => {
     /*
@@ -91,7 +91,6 @@ describe('Node Selection View-Behaviour', () => {
         })
 
     });
-   
 });
 
 
