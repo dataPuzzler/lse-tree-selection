@@ -18,10 +18,18 @@ body {
   padding-top: 4%;
 }
 
+#ssr-example lse-tree-selection-node{
+  color: rgb(200,0,0);
+}
+
+lse-tree-selection{
+  display: block;
+  margin-bottom: 50px;
+}
 
 
 lse-tree-selection-node {
-  color: blue;
+  color: rgb(0,0,200);
   font-size: bold;
   margin-left: 40px;
   margin-top: 3px;
@@ -29,6 +37,16 @@ lse-tree-selection-node {
 
 }
 
-lse-tree-selection-node input:focus + label, lse-tree-selection-node input:hover {
-  background-color: yellow /* Change label text color */  
+lse-tree-selection-node input:focus + label {
+  animation: highlight 1s forwards;
+}
+
+
+@keyframes highlight {
+  0% {
+      background-color: yellow;
+  }
+  100% {
+      background-color: #f0f2f5;
+  }
 }

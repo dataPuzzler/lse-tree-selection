@@ -8,7 +8,35 @@
   </head>
   <body>
     <div id="app">
+      <div id="csr-example">
+      </div> 
+      <div id="ssr-example">
+        <lse-tree-selection init-dimension="Muscle-Unit-Selection" ><lse-tree-selection-node id="400">
+          <input id="lbl-30" type="checkbox" value="30">
+          <label class="selection-label" for="lbl-30">Muscle-Units </label>
+          <lse-tree-selection-node  id="20">
+          <input id="lbl-20" type="checkbox" value="20">
+          <label class="selection-label" for="lbl-20">Upper Body</label>
+          <lse-tree-selection-node  id="21">
+          <input id="lbl-21" type="checkbox" value="21">
+          <label class="selection-label" for="lbl-21">Pectoralis Major </label>
+          </lse-tree-selection-node><lse-tree-selection-node  id="22">
+          <input id="lbl-22" type="checkbox" value="22">
+          <label class="selection-label" for="lbl-22">Latissimus Dorsi </label>
+          </lse-tree-selection-node></lse-tree-selection-node><lse-tree-selection-node id="10">
+          <input id="lbl-10" type="checkbox" value="10">
+          <label class="selection-label" for="lbl-10">Lower Body </label>
+          <lse-tree-selection-node  id="11">
+          <input id="lbl-11" type="checkbox" value="11">
+          <label class="selection-label" for="lbl-11">Rectus Femoris </label>
+          </lse-tree-selection-node><lse-tree-selection-node  id="12">
+          <input id="lbl-12" type="checkbox" value="12">
+          <label class="selection-label" for="lbl-12">Gastrocnemius </label>
+          </lse-tree-selection-node></lse-tree-selection-node></lse-tree-selection-node>
+        </lse-tree-selection>
+      </div>     
     </div>
   </body>
-   <script type="module" src="./lse_tree_select.js"></script>
+  <script type="module" src="/js/lse-tree-selection.js"></script> 
+  <script src="/js/render-region-selection.js"></script>
 </html>

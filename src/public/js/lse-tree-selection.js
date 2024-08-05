@@ -38,21 +38,26 @@ class TreeSelection extends HTMLElement{
 
   connectedCallback(){
     console.log(`On Connected called in ${this.constructor.name}`)
-    this.initErrors = ""
-    this.initData = this.parseInitData()
-    this.initDimension = this.getInitDimension()
+    console.log(this.getAttribute("init-data") != null)
     /**
      * @type {Set}
      */
     this.selectedIDs = new Set()
-    
-    if(this.isInitDataValid(this.initData) && this.isInitDimensionValid() ){
-      this.render(this.initData);
-      this.setAttribute("init-data", "done")
+    this.initDimension = this.getInitDimension()
+    if(this.isInitDimensionValid() ){
       this.addEventListener("lse-tree-selection-changed", this.handleChangedSelection)
     }
-    else{
-      this.setAttribute("init-data", this.initErrors)
+
+    if(this.isClientSideRenderingEnabled()){
+      this.initErrors = ""
+      this.initData = this.parseInitData()
+      if(this.isInitDataValid(this.initData)){
+        this.render(this.initData);
+        this.setAttribute("init-data", "done")
+      } else{
+        this.setAttribute("init-data", this.initErrors)
+      }
+
     }
   }
 
@@ -76,6 +81,10 @@ class TreeSelection extends HTMLElement{
    */
   getInitDimension(){
     return this.getAttribute("init-dimension");
+  }
+
+  isClientSideRenderingEnabled(){
+    return this.getAttribute("init-data") != null;
   }
 
 
@@ -166,14 +175,15 @@ class TreeSelectionNode extends HTMLElement{
     super()
     this.childCount = 0
     this.checkedChilds = new Set()
-
-
   }
   
   static get observedAttributes() {
     return ['checked'];
   }
 
+  isClientSideRenderingEnabled(){
+    return this.getAttribute("init-data") != null;
+  }
 
   /**
    * @returns {TreeSelectionOption}
@@ -184,10 +194,18 @@ class TreeSelectionNode extends HTMLElement{
 
   connectedCallback(){
     console.log(`On Connected called in ${this.constructor.name}`);
-    let initData = this.parseInitData();
-    this.childCount = initData.children ? initData.children.length : 0
-    this.render(initData);
-    this.setAttribute("init-data", "done")
+    if(this.isClientSideRenderingEnabled()){
+      let initData = this.parseInitData();
+      this.childCount = initData.children ? initData.children.length : 0
+      this.render(initData);
+      this.setAttribute("init-data", "done")
+    } else{
+      this.childCount =  this.children.length
+    }
+    
+    
+    
+    
     this.addEventListener("change", this.handleSelectionChange)
     this.addEventListener("lse-tree-selection-changed", this.handleChangedSelection)
   }
@@ -317,116 +335,3 @@ class TreeSelectionNode extends HTMLElement{
 }
 
 customElements.define('lse-tree-selection-node',TreeSelectionNode);
-
-
-
-const data = {
-  id: 30,
-  label:"Muscle-Units", 
-  children: [
-  {
-    id: 20,
-    label: "Upper Body",
-    children: [
-      {
-        id: 21,
-        label: "Pectoralis Major",
-      },
-      {
-        id: 22,
-        label: "Latissimus Dorsi",
-        children: []
-      }
-    ]
-  },
-  {
-    id: 10,
-    label: "Lower Body",
-    children: [
-      {
-        id: 11,
-        label: "Rectus Femoris",
-        children: []
-      },
-      {
-        id: 12,
-        label: "Gastrocnemius",
-        children: []
-      }
-    ]
-  }
-]};
-
-const data2 = {
-  id: 19999,
-  label:"Europe",
-  children: [
-    {
-      id: 1999,
-      label: "Spain",
-      children: [
-        {
-          id: 199,
-          label: "Asturias",
-          children: [
-            {
-              id: 10,
-              label: "Gijon",
-              children: []
-            },
-            {
-              id: 11,
-              label: "Oviedo",
-              children: []
-            },
-            {
-              id: 12,
-              label: "Avilés",
-              children: []
-            }
-          ]
-        },
-        {
-          id: 299,
-          label: "Castellón",
-          children: [
-            {
-              id: 21,
-              label: "Villarel",
-              children: []
-            },
-            {
-              id: 22,
-              label: "Burriana",
-              children: []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: 5999,
-      label: "Portugal",
-      children: [
-        {
-          id: 599,
-          label: "Estremadura",
-          children: [
-            {
-              id: 232,
-              label: "Lisboa",
-              children: []
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-
-
-let region_tree_selection = document.createElement("lse-tree-selection")
-region_tree_selection.setAttribute("init-dimension", "Region-Selection")
-region_tree_selection.setAttribute("init-data", JSON.stringify(data2))
-app.appendChild(region_tree_selection)
-

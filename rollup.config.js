@@ -8,16 +8,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 
+
 export default {
-  input: path.resolve(__dirname, 'src', 'lse_tree_select.js'), 
+  input: path.resolve(__dirname, 'src/public/js/lse-tree-selection.js'), 
   output: [
     {
-      file: path.resolve(__dirname, 'dist/lse_tree_select.esm.js'),
+      file: path.resolve(__dirname, 'dist/lse-tree-selection.js'),
       format: 'es',
       sourcemap: true,
     },
     {
-        file: path.resolve(__dirname, 'test-dist/lse_tree_select.esm.js'),
+        file: path.resolve(__dirname, 'test-dist/js/lse-tree-selection.js'),
         format: 'es',
       }
   ],
