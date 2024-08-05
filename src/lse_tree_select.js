@@ -129,7 +129,6 @@ class TreeSelection extends HTMLElement{
     console.log(`Render called in ${this.constructor.name}`)
     
     console.log(`Render Data Before: ${renderData}`)
-    
     let tree = document.createElement("lse-tree-selection-node");
     tree.setAttribute("init-data", JSON.stringify(this.initData));
     this.appendChild(tree);
@@ -254,8 +253,8 @@ class TreeSelectionNode extends HTMLElement{
   }
   /**
    * 
-   * @param {Event} Event that initially caused the Update
-   * Propagate Selection Change to Childs
+   * @param {Event} Event that initially caused the update
+   * propagate selection change to childs
    */
   propagateSelectionChangeToLeafs(ev){
     let affectedIDs = []
@@ -278,14 +277,6 @@ class TreeSelectionNode extends HTMLElement{
     return this.childCount > 0;
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    console.log("Attribute Changed Called")
-    if (name === 'data') {
-        console.log(oldValue);
-        console.log(newValue)
-    }
-}
-
   /**
    * 
    * @param {TreeSelectionOption} initData 
@@ -294,8 +285,8 @@ class TreeSelectionNode extends HTMLElement{
   getNodeContent(initData){
     let template = document.createElement("template");
     template.innerHTML = `
-    <input type="checkbox" value=${initData.id} />
-    <label class="selection-label">${initData.label}</label>
+    <input id=${`lbl-${initData.id}`} type="checkbox" value=${initData.id} />
+    <label class="selection-label" for="lbl-${initData.id}">${initData.label} </label>
     `
     return template.content.cloneNode(true);
   }

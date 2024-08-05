@@ -1,3 +1,16 @@
+/* Basic reset for better compatibility */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f0f2f5;
+  font-family: Arial, sans-serif;
+}
+
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -10,7 +23,12 @@
 lse-tree-selection-node {
   color: blue;
   font-size: bold;
-  margin-left: 70px;
+  margin-left: 40px;
+  margin-top: 3px;
   display: block;
 
+}
+
+lse-tree-selection-node input:focus + label, lse-tree-selection-node input:hover {
+  background-color: yellow /* Change label text color */  
 }
