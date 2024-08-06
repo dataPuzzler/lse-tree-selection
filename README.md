@@ -2,6 +2,10 @@
 
 A dependency free web component enabling consistent interactivity of a tree selection view. It's usable both in client- and server side rendering settings (csr & ssr).
 
+# Showcase
+[![E2E-Tests](https://img.youtube.com/vi/OWD8yDEvPuw/0.jpg)](https://www.youtube.com/watch?v=OWD8yDEvPuw)
+
+
 ## Table of Contents
 - [Installation](#installation)
 - [Examples](#examples)
