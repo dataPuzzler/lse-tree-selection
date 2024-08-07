@@ -66,7 +66,7 @@ const region_selection_data = {
   }
   
   let client_side_rendering_container = document.getElementById("csr-example");
-  let region_tree_selection = document.createElement("lse-tree-selection")
-  region_tree_selection.setAttribute("init-dimension", "Region-Selection")
-  region_tree_selection.setAttribute("init-data", JSON.stringify(region_selection_data))
-  client_side_rendering_container.appendChild(region_tree_selection)
+  let region_tree_selection = document.createElement("lse-tree-selection");
+  region_tree_selection.setAttribute("init-dimension", "Region-Selection");
+  region_tree_selection.setAttribute("init-data", JSON.stringify(region_selection_data));
+  client_side_rendering_container.appendChild(region_tree_selection);

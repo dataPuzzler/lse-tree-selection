@@ -1,17 +1,3 @@
-/**
- * Public API
- * HTML-TagName:
- * <lse-tree-selection-container>
- * Required HTML-Attributes:
- *  dimension-key := Unique Identifer for an lse-tree-selection-container instance
- *  init-data := Initial TreeSelectionOption structure that gets rendered in DOM-Tree in mounting-phase
- * 
- * Dispatches TreeSelectionChangeEvent
- * type: lse-tree-selection-change (= Event-Name)
- * 
- */
-
-
 class TreeSelectionChangeEvent extends Event{
   
   /**
@@ -90,10 +76,6 @@ class TreeSelection extends HTMLElement{
   }
 
 
-
-
-
-
   /**
    * @param {TreeSelectionOption} initdata 
    * @returns {boolean} 
@@ -167,8 +149,6 @@ class TreeSelection extends HTMLElement{
     console.log(`Dispatched TopLevel ChangedSelection => new State: ${JSON.stringify(topEv)} `)
   }
 }
-
-customElements.define('lse-tree-selection', TreeSelection)
 
 
 class TreeSelectionNode extends HTMLElement{
@@ -336,4 +316,8 @@ class TreeSelectionNode extends HTMLElement{
   }
 }
 
+
+customElements.define('lse-tree-selection', TreeSelection);
 customElements.define('lse-tree-selection-node',TreeSelectionNode);
+
+export {TreeSelection, TreeSelectionNode, TreeSelectionChangeEvent}

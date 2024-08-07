@@ -8,14 +8,17 @@ A dependency free web component enabling consistent interactivity of a tree sele
 
 ## Table of Contents
 - [Installation](#installation)
-- [Examples](#examples)
 - [HTML-API](#html-api)
 - [Event-API](#event-api)
 - [Style-API](#style-api)
 
 ## Installation
 
-You can install the package using npm:
+You can install the web component's javascript into your project with your npm-manager of choice.
+For example:
+```sh
+npm install 'lse-tree-selection'
+```
 
 ## HTML-API
 
