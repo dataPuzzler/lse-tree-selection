@@ -20,6 +20,12 @@ For example:
 npm install 'lse-tree-selection'
 ```
 
+Import from the package to make sure its js contents are loaded in places of usage. After that interactivity should work for the introduced HTML tags as defined below.
+```js
+import * as LseTreeSelection from "lse-tree-selection"
+```
+
+
 ## HTML-API
 
 ### `<lse-tree-selection>`
