@@ -274,7 +274,7 @@ class TreeSelectionNode extends HTMLElement{
     
 
   hasChildren(){
-    return this.childCount > 0;
+    return this.querySelectorAll("lse-tree-selection-node").length > 0
   }
 
   /**

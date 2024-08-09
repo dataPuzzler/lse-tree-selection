@@ -5,8 +5,8 @@
   "version": "1.0.1",
   "type": "module",
   "license": "MIT",
-  "main": "src/public/js/lse-tree-selection.js",
-  "browser": "src/public/js/lse-tree-selection.js",
+  "main": "dist/lse-tree-selection.js",
+  "browser": "dist/lse-tree-selection.js",
   "author": {
     "name": "Lukas Seppelfricke",
     "email": "datapuzzler@gmail.com"
