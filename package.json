@@ -2,7 +2,7 @@
   "name": "lse-tree-selection",
   "private": false,
   "description": "Dependency free web component enabling consistent interactivity of tree selection views.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "license": "MIT",
   "main": "dist/lse-tree-selection.js",
