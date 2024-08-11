@@ -317,7 +317,13 @@ class TreeSelectionNode extends HTMLElement{
 }
 
 
-customElements.define('lse-tree-selection', TreeSelection);
-customElements.define('lse-tree-selection-node',TreeSelectionNode);
 
-export {TreeSelection, TreeSelectionNode, TreeSelectionChangeEvent}
+
+
+
+function register_lse_tree_selection_components(){
+  customElements.define('lse-tree-selection', TreeSelection);
+  customElements.define('lse-tree-selection-node',TreeSelectionNode);
+}
+
+export {register_lse_tree_selection_components}
